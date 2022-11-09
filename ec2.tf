@@ -7,6 +7,10 @@ resource "aws_instance" "demo_instance" {
   }
   user_data = <<EOF
 #!/bin/bash
+ yum install httpd -y
+ echo "Hello Word" > /var/www/html/index.html
+ systemctl start httpd
+ systemctl enable httpd
  amazon-linux-extras install epel -y
  yum install openscap-scanner -y
  yum install scap-security-guide -y
