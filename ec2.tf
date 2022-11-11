@@ -4,10 +4,6 @@ resource "aws_instance" "demo_instance" {
   key_name = "aws-tf"
   user_data = <<-EOF
  #!/bin/bash
- sudo yum install httpd -y
- sudo echo "Hello Word" > /var/www/html/index.html
- sudo systemctl start httpd
- sudo systemctl enable httpd
  sudo amazon-linux-extras install epel -y
  sudo yum install openscap-scanner -y
  sudo yum install scap-security-guide -y
