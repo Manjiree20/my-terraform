@@ -11,12 +11,16 @@ resource "aws_instance" "demo_instance" {
  echo "Hello Word" > /var/www/html/index.html
  systemctl start httpd
  systemctl enable httpd
- amazon-linux-extras install epel -y
+ sudo yum install openscap-scanner -y
+ sudo yum install scap-security-guide -y
+ sudo ls -1 /usr/share/xml/scap/ssg/content/ssg-*-ds.xml
+ sudo oscap info /usr/share/xml/scap/ssg/content/ssg-amzn2-ds.xml
  sudo yum install libreswan -y
  sudo yum install aide -y
  sudo echo "05 4 * * * root /usr/sbin/aide --check" >> /etc/crontab
  sudo /usr/sbin/aide --init
  sudo cp /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
  sudo /usr/sbin/aide --check
+ sudo echo "ClientAliveInterval 900" >> /etc/ssh/sshd_config
   EOF
   }
