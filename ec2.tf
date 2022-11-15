@@ -30,6 +30,6 @@ sudo service chronyd restart
 sudo chkconfig chronyd on
 chronyc sources -v
 chronyc tracking    
-sudo echo "GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=VolGroup/LogVol06 rd.lvm.lv=VolGroup/lv_swap rhgb quiet rd.shell=0 audit=1" >> /etc/default/grub 
+sudo echo "GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=VolGroup/LogVol06 rd.lvm.lv=VolGroup/lv_swap rhgb quiet rd.shell=0 audit=1"" >> /etc/default/grub 
   EOF
   }
