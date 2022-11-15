@@ -7,10 +7,6 @@ resource "aws_instance" "demo_instance" {
   }
   user_data = <<EOF
 #!/bin/bash
- yum install httpd -y
- echo "Hello Word" > /var/www/html/index.html
- systemctl start httpd
- systemctl enable httpd
  sudo yum install openscap-scanner -y
  sudo yum install scap-security-guide -y
  sudo ls -1 /usr/share/xml/scap/ssg/content/ssg-*-ds.xml
@@ -22,5 +18,8 @@ resource "aws_instance" "demo_instance" {
  sudo cp /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
  sudo /usr/sbin/aide --check
  sudo echo "ClientAliveInterval 900" >> /etc/ssh/sshd_config
+ sudo echo " # rotate log files frequency
+           daily " >> /etc/logrotate.conf
+ sudo echo "INACTIVE=90" >> /etc/default/useradd          
   EOF
   }
