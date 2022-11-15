@@ -20,7 +20,8 @@ sudo /usr/sbin/aide --check
 sudo echo "ClientAliveInterval 900" >> /etc/ssh/sshd_config
 sudo echo "# rotate log files frequency
            daily " >> /etc/logrotate.conf
-sudo echo "INACTIVE=90" >> /etc/default/useradd  
+sudo echo "INACTIVE=90" >> /etc/default/useradd
+sudo echo "GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=VolGroup/LogVol06 rd.lvm.lv=VolGroup/lv_swap rhgb quiet rd.shell=0 audit=1"" >> /etc/default/grub   
 sudo echo "server 2.amazon.pool.ntp.org" >> /etc/chrony.conf
 sudo echo "server 0.amazon.pool.ntp.org" >> /etc/chrony.conf
 sudo yum erase 'ntp*'
@@ -30,6 +31,5 @@ sudo service chronyd restart
 sudo chkconfig chronyd on
 chronyc sources -v
 chronyc tracking    
-sudo echo "GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=VolGroup/LogVol06 rd.lvm.lv=VolGroup/lv_swap rhgb quiet rd.shell=0 audit=1"" >> /etc/default/grub 
   EOF
   }
