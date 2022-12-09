@@ -5,6 +5,13 @@ resource "aws_instance" "demo_instance" {
   tags = {
     Name = "terraform"
   }
-  user_data = "${file("usercreation.sh")}"
+  user_data = <<EOF
+#!/bin/bash
+sudo useradd manjiree
+echo "1pay@123" | passwd --stdin "manjiree"
+sudo chage -d 0 manjiree
+sudo systemctl restart sshd
+
+EOF 
   }
 
