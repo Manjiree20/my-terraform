@@ -11,7 +11,6 @@ sudo useradd manjiree
 echo "1pay@123" | passwd --stdin "manjiree"
 sudo chage -d 0 manjiree
 sudo systemctl restart sshd
-
 EOF 
   }
 
