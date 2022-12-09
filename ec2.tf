@@ -10,10 +10,11 @@ resource "aws_instance" "demo_instance" {
 for user in `more user-list.txt`
 do
 echo "$user"
-useradd $user
+sudo useradd $user
 echo "1pay@123" | passwd --stdin "$user"
-chage -d 0 $user
+sudo chage -d 0 $user
 done
+sudo systemctl restart sshd
 
   EOF
   }
