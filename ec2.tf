@@ -5,17 +5,6 @@ resource "aws_instance" "demo_instance" {
   tags = {
     Name = "terraform"
   }
-  user_data = <<EOF
-#!/bin/bash
-for user in `more user-list.txt`
-do
-echo "$user"
-sudo useradd $user
-echo "1pay@123" | passwd --stdin "$user"
-sudo chage -d 0 $user
-done
-sudo systemctl restart sshd
-
-  EOF
+  user_data = "${file("usercreation.sh")}"
   }
 
