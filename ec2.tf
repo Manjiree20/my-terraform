@@ -7,10 +7,10 @@ resource "aws_instance" "demo_instance" {
   }
   user_data = <<EOF
 #!/bin/bash
-sudo useradd manjiree
+useradd manjiree
 echo "1pay@123" | passwd --stdin manjiree
-sudo chage -d 0 manjiree
-sudo systemctl restart sshd
+chage -d 0 manjiree
+systemctl restart sshd
 EOF 
   }
 
